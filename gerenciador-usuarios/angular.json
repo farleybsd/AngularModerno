@@ -59,6 +59,11 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+          "host": "0.0.0.0",
+          "poll": 2000,
+          "liveReload": true
+      },
           "configurations": {
             "production": {
               "buildTarget": "gerenciador-usuarios:build:production"
@@ -94,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
