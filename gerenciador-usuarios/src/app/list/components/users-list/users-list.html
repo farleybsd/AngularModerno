@@ -1,0 +1,5 @@
+<ul>
+  @for (user of users(); track user) {
+    <li>{{ user }} <button (click)="remover(user)">Remover</button></li>
+  }
+</ul>

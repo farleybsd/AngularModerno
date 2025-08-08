@@ -1,0 +1,2 @@
+# Criar componente com Schematics
+npx ng generate component list/components/users-list
