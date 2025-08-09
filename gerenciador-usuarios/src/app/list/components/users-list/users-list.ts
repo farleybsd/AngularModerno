@@ -1,5 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { User } from '../../../shared/models/usuario';
 
 @Component({
   selector: 'app-users-list',
@@ -10,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class UsersList {
 
 
- users = input.required<string[]>();
+ users = input.required<User[]>();
  removerUser = output<string>({alias: 'remover'});
 
  remover(user : string) {

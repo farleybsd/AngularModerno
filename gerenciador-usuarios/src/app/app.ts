@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { UsersList } from './list/components/users-list/users-list';
 import { SearchInput } from './list/components/search-input/search-input';
 import { Users } from './shared/services/users';
+import { User } from './shared/models/usuario';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class App implements OnInit {
 
    userService = inject(Users);
 
-   users = signal<string[]>([]);
+   users = signal<User[]>([]);
    search = signal('');
    searchInLowrCase= computed(() => this.search().toLocaleLowerCase());
    isLoading = signal(true);
@@ -22,7 +23,7 @@ export class App implements OnInit {
   // Toda fez que o sinal emitir um sinal essa funcao computed e executada
   // e o valor atualizado
   filteredUsers = computed(() => {
-   return this.users().filter(user => user.toLocaleLowerCase()
+   return this.users().filter(user => user.name.toLocaleLowerCase()
                                           .includes(this.searchInLowrCase()));
   });
 
@@ -33,6 +34,6 @@ export class App implements OnInit {
     });
   }
    remove(user:string){
-    this.users.update(users => users.filter(u => u != user));
+    this.users.update(users => users.filter(u => u.name != user));
    }
 }
