@@ -1,1 +1,6 @@
-<app-users-list [users]="users() "(remover)="remove($event)"/>
+@if (isLoading()) {
+  <p>Carregando...</p>
+} @else {
+  <app-search-input [(search)]="search"/>
+  <app-users-list [users]="filteredUsers()" (remover)="remove($event)"/>
+}

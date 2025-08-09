@@ -1,2 +1,6 @@
 # Criar componente com Schematics
 npx ng generate component list/components/users-list
+# Criando Service
+npx ng generate service shared/services/users
+# Rodando o Json Server
+npx json-server db.json
