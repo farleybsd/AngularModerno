@@ -1,8 +1,9 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { User } from '../../../shared/models/usuario';
-import { Users } from '../../../shared/services/users';
-import { SearchInput } from "./search-input/search-input";
-import { UsersList } from "./users-list/users-list";
+
+import { SearchInput } from './components/search-input/search-input';
+import { UsersList } from './components/users-list/users-list';
+import { User } from '../../shared/models/usuario';
+import { Users } from '../../shared/services/users';
 
 @Component({
     selector: 'app-list',
@@ -16,7 +17,7 @@ import { UsersList } from "./users-list/users-list";
     imports: [SearchInput, UsersList]
 })
 
-export class ListComponent implements OnInit {
+export class List implements OnInit {
     constructor() { }
 
    userService = inject(Users);

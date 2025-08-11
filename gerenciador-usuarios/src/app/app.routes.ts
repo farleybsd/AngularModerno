@@ -1,11 +1,15 @@
 import { Routes } from '@angular/router';
-import { ListComponent } from './features/list/components/list';
+
 
 export const routes: Routes = [
     {
         path: 'list',
-        component: ListComponent, // Replace with actual component
-    }, 
+        loadChildren: () => import('./features/list/routes').then((m) => m.routes)
+    },
+    {
+        path: 'create',
+        loadChildren: () => import('./features/create/routes').then((m) => m.routes),
+    },
     {
         path: '',
         redirectTo: 'list',
