@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { User } from '../../../shared/models/usuario';
+import { User } from '../../../../shared/models/usuario';
 
 @Component({
   selector: 'app-users-list',
