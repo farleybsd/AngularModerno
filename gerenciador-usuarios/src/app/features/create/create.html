@@ -1,4 +1,9 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="submit()">
     <input type="text" formControlName="name" placeholder="Name" />
-    {{form.value.name}}
+    @if(form.controls.name.errors?.['required'])
+    {
+        <div class="error-message">Campo obrigatorio </div>
+    }
+
+    <button [disabled]="form.invalid">Criar Usuario</button>
 </form>

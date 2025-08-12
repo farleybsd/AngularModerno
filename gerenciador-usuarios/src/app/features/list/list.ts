@@ -2,7 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 
 import { SearchInput } from './components/search-input/search-input';
 import { UsersList } from './components/users-list/users-list';
-import { User } from '../../shared/models/usuario';
+import { User } from '../../shared/interface/usuario';
 import { Users } from '../../shared/services/users';
 
 @Component({
@@ -40,7 +40,7 @@ export class List implements OnInit {
       this.isLoading.set(false);
     });
   }
-   remove(user:string){
-    this.users.update(users => users.filter(u => u.name != user));
+   remove({id} :User){
+    this.users.update(users => users.filter(u => u.id != id));
    }
 }

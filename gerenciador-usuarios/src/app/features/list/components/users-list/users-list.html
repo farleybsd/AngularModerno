@@ -1,5 +1,5 @@
 <ul>
   @for (user of users(); track user) {
-    <li>{{ user.name }} <button (click)="remover(user.name)">Remover</button></li>
+    <li>{{ user.name }} <button (click)="remover(user)">Remover</button></li>
   }
 </ul>
