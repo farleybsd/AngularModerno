@@ -7,10 +7,15 @@ import { Users } from '../../shared/services/users';
 
 import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list',
   template: `
+  <div>
+    <a [routerLink]="'/create'"> Criar Usuario</a>
+  </div>
+   
   <app-search-input [(search)]="search"/>
 
   @if (isLoading()) {
@@ -18,7 +23,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   } @else {
   <app-users-list [users]="users()" (remover)="remove($event)"/>
 }`,
-  imports: [SearchInput, UsersList]
+  imports: [SearchInput, UsersList,RouterLink]
 })
 
 export class List implements OnInit {
