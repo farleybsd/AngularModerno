@@ -16,9 +16,14 @@ export class UsersList {
 
  users = input.required<User[]>();
  removerUser = output<User>({alias: 'remover'});
+ editUser = output<User>({alias: 'edit'});
 
  remover(user : User) {
    this.removerUser.emit(user);
+ }
+
+  edit(user : User) {
+   this.editUser.emit(user);
  }
 
 }

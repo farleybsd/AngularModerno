@@ -9,6 +9,9 @@ export class Users {
 
   httpClient = inject(HttpClient)
 
+  getById(id: string) {
+    return this.httpClient.get<User>(`http://localhost:3000/users/${id}`);
+  }
   getAll(search?: string) {
 
     let httpParams = new HttpParams();
@@ -27,6 +30,10 @@ export class Users {
     return this.httpClient.post<User[]>('http://localhost:3000/users',paylod);
   }
 
+  put(id: string, payload: UserPayload) {
+    return this.httpClient.put<User>(`http://localhost:3000/users/${id}`, payload);
+  }
+  
   delete(id:number){
     return this.httpClient.delete<{}>(`http://localhost:3000/users/${id}`);
   }

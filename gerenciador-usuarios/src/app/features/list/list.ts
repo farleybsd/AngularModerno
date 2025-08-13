@@ -7,7 +7,7 @@ import { Users } from '../../shared/services/users';
 
 import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -32,6 +32,8 @@ export class List implements OnInit {
   users = signal<User[]>([]);
   search = signal('');
   isLoading = signal(true);
+  router = inject(Router);
+  
   //searchInLowrCase= computed(() => this.search().toLocaleLowerCase());
   // Toda fez que o sinal emitir um sinal essa funcao computed e executada
   // e o valor atualizado
@@ -49,6 +51,10 @@ export class List implements OnInit {
     this.userService.delete(id).subscribe(() => {
       this.users.update(users => users.filter(u => u.id != id));
     });
+  }
+  // Método para editar um usuário
+  edit(user: User) {
+    this.router.navigate(['/edit', user.id]);
   }
 
   private getUsers() {

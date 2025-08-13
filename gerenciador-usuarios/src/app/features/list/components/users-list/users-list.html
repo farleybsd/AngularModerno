@@ -2,7 +2,21 @@
 <mat-card class="card">
   <mat-card-content class="card-content">
     <span>{{ user.name |titlecase |truncate:6}}</span>
-     <button class="action-button" appErrorBtn matButton="filled" (click)="remover(user)">Deletar</button>
+    <div class="actions">
+      <button 
+       appErrorBtn
+       matButton="filled"
+       (click)="remover(user)">
+       Deletar
+      </button>
+
+      <button
+       matButton="filled"
+       (click)="edit(user)">
+       Editar
+      </button>
+
+    </div>
   </mat-card-content>
 </mat-card>
 }

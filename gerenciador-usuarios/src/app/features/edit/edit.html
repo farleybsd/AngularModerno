@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
+
+    <mat-form-field class="example-full-width">
+            <mat-label>Nome Do Usuario</mat-label>
+            <input
+             type="text"
+             matInput 
+             formControlName="name" 
+             placeholder="Ex. João da Silva" 
+             required
+             />
+
+            @if(form.controls.name.errors?.['required'])
+            {
+            <mat-error class="error-message">Campo obrigatorio </mat-error>
+            }
+    </mat-form-field>
+<div class="actions-container">
+    <button type="button" matButton="elevated" routerLink="/">Cancelar</button>
+    <button matButton="filled" [disabled]="form.invalid">Atualizar Usuario</button>
+</div>
+
+</form>
