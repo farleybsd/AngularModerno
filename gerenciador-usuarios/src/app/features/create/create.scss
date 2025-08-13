@@ -1,4 +1,11 @@
-.error-message {
-    color: red;
-    font-size: 0.8rem;
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .actions-container{
+        display: flex;
+        justify-content: end;
+        gap: 8px;
+    }
 }

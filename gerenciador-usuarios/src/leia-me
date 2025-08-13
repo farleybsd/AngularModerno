@@ -4,3 +4,7 @@ npx ng generate component list/components/users-list
 npx ng generate service shared/services/users
 # Rodando o Json Server
 npx json-server db.json
+# Criando uma diretiva
+npx ng g d features/list/components/users-list/directives/error-btn
+# Criando um Pipe
+npx ng g pipe features/list/components/users-list/pipes/truncate/truncate

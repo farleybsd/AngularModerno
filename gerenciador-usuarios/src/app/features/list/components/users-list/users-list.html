@@ -1,8 +1,8 @@
 @for (user of users(); track user) {
 <mat-card class="card">
   <mat-card-content class="card-content">
-    <span>{{ user.name }}</span>
-     <button class="action-button" matButton="filled" (click)="remover(user)">Deletar</button>
+    <span>{{ user.name |titlecase |truncate:6}}</span>
+     <button class="action-button" appErrorBtn matButton="filled" (click)="remover(user)">Deletar</button>
   </mat-card-content>
 </mat-card>
 }

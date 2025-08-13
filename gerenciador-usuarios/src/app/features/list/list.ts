@@ -12,32 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list',
-  template: `
-  <div class="action-container">
-    <app-search-input [(search)]="search"/>
-    <div class="button-action">
-    <a matButton="elevated" [routerLink]="'/create'"> Criar Usuario</a>
-  </div>
-</div>
-
-  @if (isLoading()) {
-    <p>Carregando...</p>
-  } @else {
-  <app-users-list [users]="users()" (remover)="remove($event)"/>
-}`,
+  templateUrl: './list.html',
+  styleUrls: ['./list.scss'],
   imports: [SearchInput, UsersList, RouterLink, MatButtonModule],
-  styles: [
-    `
-    .action-container {
-      display: flex;
-      align-items: center;
-      
-    .button-action{
-      margin-left: auto;
-    }
-    }
-    `
-  ]
+  
 })
 
 export class List implements OnInit {
