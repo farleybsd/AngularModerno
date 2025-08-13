@@ -1,8 +1,4 @@
-.header{
-    width: 100%;
-    padding: 10px;
-    background-color: black;
-    color: white;
+.toolbar{
     display: flex;
     justify-content: center;
 }
@@ -12,4 +8,11 @@
     justify-content: center;
     width: 100%;
     padding: 20px;
+
+.content-container{
+    width: 100%;
+    max-width: 600px;
+   
+}
+
 }

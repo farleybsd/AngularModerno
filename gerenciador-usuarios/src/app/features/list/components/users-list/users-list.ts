@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { User } from '../../../../shared/interface/usuario';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-users-list',
-  imports: [FormsModule],
+  imports: [MatCardModule,MatButtonModule],
   templateUrl: './users-list.html',
   styleUrl: './users-list.scss'
 })

@@ -8,22 +8,36 @@ import { Users } from '../../shared/services/users';
 import { take } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list',
   template: `
-  <div>
-    <a [routerLink]="'/create'"> Criar Usuario</a>
+  <div class="action-container">
+    <app-search-input [(search)]="search"/>
+    <div class="button-action">
+    <a matButton="elevated" [routerLink]="'/create'"> Criar Usuario</a>
   </div>
-   
-  <app-search-input [(search)]="search"/>
+</div>
 
   @if (isLoading()) {
     <p>Carregando...</p>
   } @else {
   <app-users-list [users]="users()" (remover)="remove($event)"/>
 }`,
-  imports: [SearchInput, UsersList,RouterLink]
+  imports: [SearchInput, UsersList, RouterLink, MatButtonModule],
+  styles: [
+    `
+    .action-container {
+      display: flex;
+      align-items: center;
+      
+    .button-action{
+      margin-left: auto;
+    }
+    }
+    `
+  ]
 })
 
 export class List implements OnInit {
@@ -61,13 +75,13 @@ export class List implements OnInit {
 
   private getUsers() {
     this.userService.getAll(this.search())
-                    .pipe(
-                      takeUntilDestroyed(this.DestroyRef), // Destrói o efeito quando o componente é destruído
-                      take(1) // Pega apenas o primeiro valor emitido
-                    )
-                    .subscribe(users => {
-      this.users.set(users);
-      this.isLoading.set(false);
-    });
+      .pipe(
+        takeUntilDestroyed(this.DestroyRef), // Destrói o efeito quando o componente é destruído
+        take(1) // Pega apenas o primeiro valor emitido
+      )
+      .subscribe(users => {
+        this.users.set(users);
+        this.isLoading.set(false);
+      });
   }
 }
