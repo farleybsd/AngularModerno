@@ -1,0 +1,4 @@
+# Criando um projeto 
+npx -p @angular/cli@20 ng new gerenciador-financeiro --skip-tests
+# Rodando o projeto wsl
+ npm start -- --host 0.0.0.0
