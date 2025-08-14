@@ -1,28 +1,12 @@
 {
   "users": [
     {
-      "id": "2db3",
-      "name": "Farley"
-    },
-    {
       "id": "7177",
       "name": "Thalita"
     },
     {
       "id": "ea00",
       "name": "Farley"
-    },
-    {
-      "id": "a3f9",
-      "name": "Thalita Rabelo"
-    },
-    {
-      "name": "ac2",
-      "id": "7a11"
-    },
-    {
-      "name": "A mano",
-      "id": "951f"
     }
   ]
 }

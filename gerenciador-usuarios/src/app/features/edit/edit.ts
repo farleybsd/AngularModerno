@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
@@ -25,7 +25,8 @@ export class Edit implements OnInit {
 
   });
   activatedRoute = inject(ActivatedRoute);
-  user = signal<User>(this.activatedRoute.snapshot.data['user']);
+  user = input.required<User>();
+  //user = signal<User>(this.activatedRoute.snapshot.data['user']);
 
  ngOnInit(): void {
   this.form.controls.name.setValue(this.user().name);
