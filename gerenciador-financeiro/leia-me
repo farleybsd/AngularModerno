@@ -17,3 +17,20 @@
   npx ng g c core/layout
 # Instalando Angular Material
 npx ng add @angular/material
+# Configurando tema customizado com Angular Material
+npx ng g @angular/material:theme-color
+
+1.  What HEX color should be used to generate the M3 theme? It will represent your primary color palette. (ex. #ffffff) #6657ec
+✔ What HEX color should be used to generate the M3 theme? It will represent your primary color palette. (ex. #ffffff) #6657ec
+✔ What HEX color should be used represent the secondary color palette? (Leave blank to use generated colors from Material) 
+✔ What HEX color should be used represent the tertiary color palette? (Leave blank to use generated colors from Material) 
+✔ What HEX color should be used represent the neutral color palette? (Leave blank to use generated colors from Material) 
+✔ What HEX color should be used represent the neutral variant palette? (Leave blank to use generated colors from Material) 
+✔ What HEX color should be used represent the error palette? (Leave blank to use generated colors from Material) 
+✔ Do you want to generate high contrast value override mixins for your themes?. Providing a high contrast version of your theme when a user specifies helps increase the 
+accesibility of your application. No
+✔ What is the directory you want to place the generated theme file in? (Enter the relative path such as 'src/app/styles/' or leave blank to generate at your project root) 
+
+✔ Do you want the generated file to be a scss file? This is the recommended way of setting up theming in your application. If not, a CSS file will be generated with all 
+the system variables defined. (Leave blank to generate a scss file) Yes
+CREATE _theme-colors.scss (2516 bytes)
