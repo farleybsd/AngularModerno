@@ -1,4 +1,17 @@
 # Criando um projeto 
 npx -p @angular/cli@20 ng new gerenciador-financeiro --skip-tests
-# Rodando o projeto wsl
- npm start -- --host 0.0.0.0
+# Rodando o projeto wsl Com live reload
+"scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "wsl": "ng serve --host 0.0.0.0 --poll 2000",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+npm run wsl
+ # Criando o Header
+ npx ng g c core/layout/components/header 
+  # Criando o layout
+ npx ng g c core/layout
