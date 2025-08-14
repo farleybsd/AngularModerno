@@ -8,3 +8,5 @@ npx json-server db.json
 npx ng g d features/list/components/users-list/directives/error-btn
 # Criando um Pipe
 npx ng g pipe features/list/components/users-list/pipes/truncate/truncate
+# Criando um Resolver
+npx ng g resolver features/edit/resolvers/get-by-id

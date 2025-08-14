@@ -30,7 +30,7 @@ export class Users {
     return this.httpClient.post<User[]>('http://localhost:3000/users',paylod);
   }
 
-  put(id: string, payload: UserPayload) {
+  put(id: string | number, payload: UserPayload) {
     return this.httpClient.put<User>(`http://localhost:3000/users/${id}`, payload);
   }
   

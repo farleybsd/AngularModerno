@@ -5,6 +5,7 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Users } from '../../shared/services/users';
+import { User } from '../../shared/interface/usuario';
 
 @Component({
   selector: 'app-edit',
@@ -24,18 +25,15 @@ export class Edit implements OnInit {
 
   });
   activatedRoute = inject(ActivatedRoute);
-  id = signal<string>(this.activatedRoute.snapshot.paramMap.get('id')!);
-  idAsString =  computed(() => this.id());
+  user = signal<User>(this.activatedRoute.snapshot.data['user']);
 
  ngOnInit(): void {
-    this.userService.getById(this.idAsString()).subscribe(user => {
-      this.form.controls.name.setValue(user.name);
-    });
+  this.form.controls.name.setValue(this.user().name);
   }
   
   submit() {
     const user = this.form.controls.name.value;
-    this.userService.put(this.idAsString(),{ name: user }).subscribe(() => {
+    this.userService.put(this.user().id,{ name: user }).subscribe(() => {
       alert('Usuario Atualizado com sucesso');
       this.form.reset();
       this.router.navigateByUrl('');
