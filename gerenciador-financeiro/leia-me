@@ -38,5 +38,7 @@ CREATE _theme-colors.scss (2516 bytes)
 # Carregando módulo Home sob-demanda com lazy loading
 npx ng g c features/home
 
-# Criando Componente Saldo
+# Criando Componente SaldoCard
 ng g c features/home/components/balance-card
+# Criando Componente Saldo
+ng g c features/home/components/balance
