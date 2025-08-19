@@ -34,3 +34,6 @@ accesibility of your application. No
 ✔ Do you want the generated file to be a scss file? This is the recommended way of setting up theming in your application. If not, a CSS file will be generated with all 
 the system variables defined. (Leave blank to generate a scss file) Yes
 CREATE _theme-colors.scss (2516 bytes)
+
+# Carregando módulo Home sob-demanda com lazy loading
+npx ng g c features/home
