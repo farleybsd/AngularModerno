@@ -1,6 +1,12 @@
 import { Component, computed, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
+type CardType = 'income' | 'outcome' | 'balance';
+enum CardTypeEnum {
+  Income = 'income',
+  Outcome = 'outcome'
+}
+
 @Component({
   selector: 'app-balance-card',
   imports: [MatCardModule],
@@ -9,22 +15,22 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class BalanceCard {
 
-  type = input.required<'income' | 'outcome' | 'balance'>();
+  type = input.required<CardType>();
   label = input.required<string>();
   value = input.required<number>();
 
-  cssClass = computed(() => {
+  cssClass = computed<CardTypeEnum>(() => {
     
     if (this.type() === 'income') {
-      return 'income';
+      return CardTypeEnum.Income;
     }
 
     if (this.type() === 'outcome') {
-      return 'outcome';
+      return CardTypeEnum.Outcome;
     }
 
-    return this.value () >= 0 ? 'income' : 'outcome';
-    
+    return this.value () >= 0 ? CardTypeEnum.Income : CardTypeEnum.Outcome;
+
   });
 
 }
