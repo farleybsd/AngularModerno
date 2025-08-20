@@ -4,7 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 type CardType = 'income' | 'outcome' | 'balance';
 enum CardTypeEnum {
   Income = 'income',
-  Outcome = 'outcome'
+  Outcome = 'outcome',
+  zero = 'zero'
 }
 
 @Component({
@@ -29,7 +30,11 @@ export class BalanceCard {
       return CardTypeEnum.Outcome;
     }
 
-    return this.value () >= 0 ? CardTypeEnum.Income : CardTypeEnum.Outcome;
+    if(this.value() == 0) {
+      return CardTypeEnum.zero
+    }
+
+    return this.value () > 0 ? CardTypeEnum.Income : CardTypeEnum.Outcome;
 
   });
 

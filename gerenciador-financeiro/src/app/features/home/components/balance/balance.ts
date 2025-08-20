@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { BalanceCard } from './components/balance-card/balance-card';
 
 @Component({
@@ -8,5 +8,23 @@ import { BalanceCard } from './components/balance-card/balance-card';
   styleUrl: './balance.scss'
 })
 export class Balance {
+
+  transactions = input.required<{ value: number, type: string }[]>();
+
+  totalIncome = computed(() => {
+    return this.transactions()
+         .filter(item => item.type === 'income')
+         .reduce((total, item) => total + item.value, 0);
+  });
+
+   totalOutcome = computed(() => {
+    return this.transactions()
+         .filter(item => item.type === 'outcome')
+         .reduce((total, item) => total + item.value, 0);
+  });
+
+  balance = computed(() =>{
+    return this.totalIncome() - this.totalOutcome();
+  })
 
 }
