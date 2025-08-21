@@ -42,3 +42,5 @@ npx ng g c features/home
 ng g c features/home/components/balance-card
 # Criando Componente Saldo
 ng g c features/home/components/balance
+# Criando Componente de itens da transacao
+npx ng g c features/home/components/transaction-item
