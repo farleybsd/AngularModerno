@@ -48,3 +48,10 @@ npx ng g c features/home/components/transaction-item
 npx ng g c features/home/components/transaction-item/components/transaction-value
 # Criando Compoente para quando nao existe transacoes
 npx ng g c features/home/components/no-transactions
+# Instalando Json Server
+npm i json-server@0 -D
+# subindo o servidor do json server
+npx json-server db.json
+npm run start:server
+# rodando varios scripts
+npm i npm-run-all -D

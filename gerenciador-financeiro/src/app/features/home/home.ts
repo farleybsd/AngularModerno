@@ -12,10 +12,5 @@ import { NoTransactions } from './components/no-transactions/no-transactions';
   styleUrl: './home.scss'
 })
 export class Home {
-   transactions = signal<Transaction[]>( [
-    //  {title:'Salario', value: 100, type: TransactionType.INCOME },
-    //  {title:'Va', value: 50, type: TransactionType.INCOME },
-    //  {title:'Aluguel', value: 150, type: TransactionType.OUTCOME },
-    
-   ]);
+   transactions = signal<Transaction[]>([]);
 }
