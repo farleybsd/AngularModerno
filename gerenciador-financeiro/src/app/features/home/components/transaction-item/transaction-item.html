@@ -4,7 +4,7 @@
             {{ transaction().title }}
         </div>
         <div class="card-value">
-            {{ transaction().value }}
+            <app-transaction-value [transaction]="transaction()"/>
         </div>
     </div>
 

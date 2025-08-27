@@ -44,3 +44,5 @@ ng g c features/home/components/balance-card
 ng g c features/home/components/balance
 # Criando Componente de itens da transacao
 npx ng g c features/home/components/transaction-item
+# Criando Componente Transaction Value
+npx ng g c features/home/components/transaction-item/components/transaction-value
