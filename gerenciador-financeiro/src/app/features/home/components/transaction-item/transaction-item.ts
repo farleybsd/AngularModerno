@@ -13,5 +13,4 @@ import { TransactionValue } from './components/transaction-value/transaction-val
 export class TransactionItem {
 
   transaction = input.required<Transaction>();
-
 }

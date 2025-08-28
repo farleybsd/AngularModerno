@@ -55,3 +55,5 @@ npx json-server db.json
 npm run start:server
 # rodando varios scripts
 npm i npm-run-all -D
+# Criando uma Service 
+npx ng g s shared/transactions/services/transaction
