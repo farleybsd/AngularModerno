@@ -57,3 +57,5 @@ npm run start:server
 npm i npm-run-all -D
 # Criando uma Service 
 npx ng g s shared/transactions/services/transaction
+# Criando a Pagina De Criacao Do Formulario
+npx ng g c features/home/pages/create
