@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -6,23 +6,55 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TransactionType } from '../../../../shared/transaction/enums/transaction-type';
 import { NgxMaskDirective } from 'ngx-mask';
-import { JsonPipe } from '@angular/common';
+import { TransactionService } from '../../../../shared/transaction/services/transaction';
+import { TransactionPayload } from '../../../../shared/transaction/interfaces/transaction';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
   selector: 'app-create',
   imports: [MatFormFieldModule, MatInputModule, FormsModule,
             ReactiveFormsModule, MatButton,MatButtonModule,
-            MatButtonToggleModule,NgxMaskDirective,JsonPipe],
+            MatButtonToggleModule,NgxMaskDirective],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
 export class CreateComponent {
+
+  private transactionService = inject(TransactionService);
+  private router = inject(Router);
+   private _snackBar = inject(MatSnackBar);
+
   readonly transactionType = TransactionType;
 
   form = new FormGroup({
     type: new FormControl('',{validators: [Validators.required]}),
     title: new FormControl('',{validators: [Validators.required]}),
-    value: new FormControl('',{validators: [Validators.required]})
+    value: new FormControl(0,{validators: [Validators.required]})
   });
+
+  submint(): void {
+    if(this.form.invalid){
+      return;
+    } 
+
+    const payload : TransactionPayload = {
+      title: this.form.value.title as string,
+      type: this.form.value.type as TransactionType,
+      value: this.form.value.value as number 
+    };
+
+    this.transactionService.post(payload).subscribe({
+      next: () => {
+        this._snackBar.open('Transacao Criando Com Sucesso ❤️', 'Ok', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+        this.router.navigate(['/']);
+      }
+  });
+  
+}
+
 }

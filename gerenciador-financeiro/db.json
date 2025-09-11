@@ -1,7 +1,34 @@
 {
   "transactions": [
-    { "id": 1, "title": "Salario", "value": 100, "type": "INCOME" },
-    { "id": 2, "title": "Va", "value": 50, "type": "INCOME" },
-    { "id": 3, "title": "Aluguel", "value": 150, "type": "OUTCOME" }
+    {
+      "id": 1,
+      "title": "Salario",
+      "value": 100,
+      "type": "INCOME"
+    },
+    {
+      "id": 2,
+      "title": "Va",
+      "value": 50,
+      "type": "INCOME"
+    },
+    {
+      "id": 3,
+      "title": "Aluguel",
+      "value": 150,
+      "type": "OUTCOME"
+    },
+    {
+      "title": "Salario",
+      "type": "income",
+      "value": 7000,
+      "id": 4
+    },
+    {
+      "title": "Mercado Compras Do Mes",
+      "type": "outcome",
+      "value": 500,
+      "id": 5
+    }
   ]
 }
