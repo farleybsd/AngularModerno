@@ -5,17 +5,21 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TransactionType } from '../../../../shared/transaction/enums/transaction-type';
+import { NgxMaskDirective } from 'ngx-mask';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-create',
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatButton,MatButtonModule,MatButtonToggleModule],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule,
+            ReactiveFormsModule, MatButton,MatButtonModule,
+            MatButtonToggleModule,NgxMaskDirective,JsonPipe],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
 export class CreateComponent {
   readonly transactionType = TransactionType;
-  
+
   form = new FormGroup({
     type: new FormControl('',{validators: [Validators.required]}),
     title: new FormControl('',{validators: [Validators.required]}),

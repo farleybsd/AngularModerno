@@ -59,3 +59,5 @@ npm i npm-run-all -D
 npx ng g s shared/transactions/services/transaction
 # Criando a Pagina De Criacao Do Formulario
 npx ng g c features/home/pages/create
+# Instalando Biblioteca de Mascara
+npm install ngx-mask

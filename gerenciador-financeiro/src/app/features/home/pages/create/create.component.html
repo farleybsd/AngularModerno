@@ -19,8 +19,14 @@
 
   <mat-form-field class="w-100 mb-24">
     <mat-label>Valor</mat-label>
-    <input type="number" matInput placeholder="Digite o valor da transação" [formControlName]="'value'" required />
-    <span matTextPrefix>R$
+    <input
+     matInput 
+     placeholder="Digite o valor da transação"
+     [formControlName]="'value'"
+     required
+     mask="separator.2"
+     />
+    <span matTextPrefix>R$ &nbsp;
     </span>
 
     @if (form.controls.value.hasError('required') && form.controls.title.touched) {
@@ -32,5 +38,4 @@
   <div class="submit-container">
     <button type="submit" mat-flat-button="filled" [disabled]="form.invalid">Salvar</button>
   </div>
-
 </form>
