@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { TransactionType } from '../../../../shared/transaction/enums/transaction-type';
 import { NgxMaskDirective } from 'ngx-mask';
 import { TransactionService } from '../../../../shared/transaction/services/transaction';
-import { TransactionPayload } from '../../../../shared/transaction/interfaces/transaction';
+import { Transaction, TransactionPayload } from '../../../../shared/transaction/interfaces/transaction';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
@@ -16,8 +16,8 @@ import { FeddbackServiceTsService } from '../../../../shared/feedback/services/f
 @Component({
   selector: 'app-create',
   imports: [MatFormFieldModule, MatInputModule, FormsModule,
-            ReactiveFormsModule, MatButton,MatButtonModule,
-            MatButtonToggleModule,NgxMaskDirective],
+    ReactiveFormsModule, MatButton, MatButtonModule,
+    MatButtonToggleModule, NgxMaskDirective],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
@@ -31,43 +31,47 @@ export class CreateComponent {
 
   readonly transactionType = TransactionType;
 
+  get transaction(): Transaction {
+    return this.activatedRoute.snapshot.data['transaction'];
+  }
 
-  ngOnInit(): void {
-    const transaction = this.activatedRoute.snapshot.data['transaction'];
-    
-    if(transaction){
-      this.form.patchValue({
-        title: transaction.title,
-        type: transaction.type,
-        value: transaction.value
-      });
-    }
+  get isEdit(): boolean {
+    return Boolean(this.transaction);
   }
 
   form = new FormGroup({
-    type: new FormControl('',{validators: [Validators.required]}),
-    title: new FormControl('',{validators: [Validators.required]}),
-    value: new FormControl(0,{validators: [Validators.required]})
+    type: new FormControl(this.transaction?.type ?? '', { validators: [Validators.required] }),
+    title: new FormControl(this.transaction?.title ?? '', { validators: [Validators.required] }),
+    value: new FormControl(this.transaction?.value ?? 0, { validators: [Validators.required] })
   });
 
   submint(): void {
-    if(this.form.invalid){
+    if (this.form.invalid) {
       return;
-    } 
+    }
 
-    const payload : TransactionPayload = {
+    const payload: TransactionPayload = {
       title: this.form.value.title as string,
       type: this.form.value.type as TransactionType,
-      value: this.form.value.value as number 
+      value: this.form.value.value as number
     };
 
-    this.transactionService.post(payload).subscribe({
-      next: () => {
-        this.feddbackServiceTsService.success('Transacao Criando Com Sucesso'); 
-        this.router.navigate(['/']);
-      }
-  });
-  
-}
+    if (this.isEdit) {
+      this.transactionService.put(this.transaction.id,payload).subscribe({
+        next: () => {
+          this.feddbackServiceTsService.success('Transacao Alterada Com Sucesso');
+          this.router.navigate(['/']);
+        }
+      });
+    } else {
+      this.transactionService.post(payload).subscribe({
+        next: () => {
+          this.feddbackServiceTsService.success('Transacao Criando Com Sucesso');
+          this.router.navigate(['/']);
+        }
+      });
+
+    }
+  }
 
 }
