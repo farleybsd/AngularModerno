@@ -24,7 +24,7 @@ export class CreateComponent {
 
   private transactionService = inject(TransactionService);
   private router = inject(Router);
-   private _snackBar = inject(MatSnackBar);
+  private _snackBar = inject(MatSnackBar);
 
   readonly transactionType = TransactionType;
 
@@ -48,8 +48,7 @@ export class CreateComponent {
     this.transactionService.post(payload).subscribe({
       next: () => {
         this._snackBar.open('Transacao Criando Com Sucesso ❤️', 'Ok', {
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
+          panelClass: ['snack-bar-success-feedback']
         });
         this.router.navigate(['/']);
       }

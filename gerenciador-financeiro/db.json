@@ -29,6 +29,30 @@
       "type": "outcome",
       "value": 500,
       "id": 5
+    },
+    {
+      "title": "pix",
+      "type": "income",
+      "value": 100,
+      "id": 6
+    },
+    {
+      "title": "teste",
+      "type": "outcome",
+      "value": 22,
+      "id": 7
+    },
+    {
+      "title": "teste denovo",
+      "type": "income",
+      "value": 20,
+      "id": 8
+    },
+    {
+      "title": "dsds",
+      "type": "income",
+      "value": 0.1,
+      "id": 9
     }
   ]
 }
