@@ -8,7 +8,7 @@ import { TransactionType } from '../../../../shared/transaction/enums/transactio
 import { NgxMaskDirective } from 'ngx-mask';
 import { TransactionService } from '../../../../shared/transaction/services/transaction';
 import { TransactionPayload } from '../../../../shared/transaction/interfaces/transaction';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
 
@@ -23,12 +23,26 @@ import { FeddbackServiceTsService } from '../../../../shared/feedback/services/f
 })
 export class CreateComponent {
 
+  private activatedRoute = inject(ActivatedRoute);
   private transactionService = inject(TransactionService);
   private feddbackServiceTsService = inject(FeddbackServiceTsService);
   private router = inject(Router);
   private _snackBar = inject(MatSnackBar);
 
   readonly transactionType = TransactionType;
+
+
+  ngOnInit(): void {
+    const transaction = this.activatedRoute.snapshot.data['transaction'];
+    
+    if(transaction){
+      this.form.patchValue({
+        title: transaction.title,
+        type: transaction.type,
+        value: transaction.value
+      });
+    }
+  }
 
   form = new FormGroup({
     type: new FormControl('',{validators: [Validators.required]}),

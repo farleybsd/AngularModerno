@@ -63,3 +63,5 @@ npx ng g c features/home/pages/create
 npm install ngx-mask
 # Criando o feedback service
 npx ng g s  shared/feedback/services/feddback.service.ts
+# Criando um Resolver 
+npx ng g resolver  features/home/pages/create/resolvers/get-transaction-by-id

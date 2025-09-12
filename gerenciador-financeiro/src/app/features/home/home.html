@@ -6,7 +6,10 @@
 
 <div class="transactions">
   @for (item of transactions(); track item) {
-  <app-transaction-item class="transactions" [transaction]="item"></app-transaction-item>
+  <app-transaction-item 
+  class="transactions" 
+  [transaction]="item"
+  (edit)="edit($event)"></app-transaction-item>
   } @empty {
   <app-no-transactions />
   }
