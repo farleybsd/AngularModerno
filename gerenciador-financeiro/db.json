@@ -53,6 +53,12 @@
       "type": "income",
       "value": 0.1,
       "id": 9
+    },
+    {
+      "title": "sss",
+      "type": "outcome",
+      "value": 0.32,
+      "id": 10
     }
   ]
 }

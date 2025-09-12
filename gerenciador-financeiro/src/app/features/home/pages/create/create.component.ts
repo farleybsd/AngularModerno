@@ -10,6 +10,7 @@ import { TransactionService } from '../../../../shared/transaction/services/tran
 import { TransactionPayload } from '../../../../shared/transaction/interfaces/transaction';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CreateComponent {
 
   private transactionService = inject(TransactionService);
+  private feddbackServiceTsService = inject(FeddbackServiceTsService);
   private router = inject(Router);
   private _snackBar = inject(MatSnackBar);
 
@@ -47,9 +49,7 @@ export class CreateComponent {
 
     this.transactionService.post(payload).subscribe({
       next: () => {
-        this._snackBar.open('Transacao Criando Com Sucesso ❤️', 'Ok', {
-          panelClass: ['snack-bar-success-feedback']
-        });
+        this.feddbackServiceTsService.success('Transacao Criando Com Sucesso'); 
         this.router.navigate(['/']);
       }
   });

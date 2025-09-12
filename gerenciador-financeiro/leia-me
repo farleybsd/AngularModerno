@@ -61,3 +61,5 @@ npx ng g s shared/transactions/services/transaction
 npx ng g c features/home/pages/create
 # Instalando Biblioteca de Mascara
 npm install ngx-mask
+# Criando o feedback service
+npx ng g s  shared/feedback/services/feddback.service.ts
