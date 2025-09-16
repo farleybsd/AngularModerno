@@ -11,6 +11,7 @@ import { Transaction, TransactionPayload } from '../../../../shared/transaction/
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
+import { Observable, tap } from 'rxjs';
 
 
 @Component({
@@ -39,13 +40,13 @@ export class CreateComponent {
     return Boolean(this.transaction());
   })
 
-  form = computed(() => 
+  form = computed(() =>
     new FormGroup({
       type: new FormControl(this.transaction()?.type ?? '', { validators: [Validators.required] }),
       title: new FormControl(this.transaction()?.title ?? '', { validators: [Validators.required] }),
       value: new FormControl(this.transaction()?.value ?? 0, { validators: [Validators.required] })
     })
-  );  
+  );
 
   submint(): void {
     if (this.form().invalid) {
@@ -59,9 +60,8 @@ export class CreateComponent {
     };
 
     if (this.isEdit()) {
-      this.transactionService.put(this.transaction()!.id, payload).subscribe({
+        this.createOrEdit(payload).subscribe({
         next: () => {
-          this.feddbackServiceTsService.success('Transacao Alterada Com Sucesso');
           this.router.navigate(['/']);
         }
       });
@@ -72,7 +72,22 @@ export class CreateComponent {
           this.router.navigate(['/']);
         }
       });
+    }
+  }
 
+  private createOrEdit(payload: TransactionPayload) : Observable<Transaction> {
+    if (this.isEdit()) {
+     return  this.transactionService
+     .put(this.transaction()!.id, payload)
+      .pipe(
+          tap(() => this.feddbackServiceTsService.success('Transacao Alterada Com Sucesso'))
+        )
+    } else {
+    return   this.transactionService
+      .post(payload)
+      .pipe(
+        tap( () => this.feddbackServiceTsService.success('Transacao Criando Com Sucesso'))
+      )
     }
   }
 
