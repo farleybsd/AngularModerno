@@ -1,24 +1,6 @@
 {
   "transactions": [
     {
-      "title": "Salario2",
-      "type": "INCOME",
-      "value": 100,
-      "id": 1
-    },
-    {
-      "id": 2,
-      "title": "Va",
-      "value": 50,
-      "type": "INCOME"
-    },
-    {
-      "id": 3,
-      "title": "Aluguel",
-      "value": 150,
-      "type": "OUTCOME"
-    },
-    {
       "title": "Salario",
       "type": "income",
       "value": 7000,
@@ -35,12 +17,6 @@
       "type": "income",
       "value": 100,
       "id": 6
-    },
-    {
-      "title": "teste",
-      "type": "outcome",
-      "value": 22,
-      "id": 7
     },
     {
       "title": "teste denovo",
