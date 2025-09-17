@@ -30,6 +30,12 @@ export class Home implements OnInit {
     this.router.navigate(['edit', transaction.id]);
   }
 
+  remove(transaction: Transaction) {
+   this.transactions.update(transactions => {
+    return transactions.filter(item => item.id !== transaction.id);
+   });
+  }
+
   private getTraansactions() {
     this.transactionService.getAll().subscribe({
       next: (trans) => {
