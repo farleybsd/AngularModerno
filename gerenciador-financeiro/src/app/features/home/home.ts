@@ -7,26 +7,7 @@ import { TransactionService } from '../../shared/transaction/services/transactio
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { FeddbackServiceTsService } from '../../shared/feedback/services/feddback.service.ts.service';
-import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
-import { filter } from 'rxjs';
-
-@Component({
-  selector: 'dialog-animations-example-dialog',
-  template: `<h2 mat-dialog-title>Deletar Transacao</h2>
-<mat-dialog-content>
-  Voce tem certeza que deseja deletar essa transacao?
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button matButton [mat-dialog-close]="false">Nao</button>
-  <button matButton [mat-dialog-close]="true" cdkFocusInitial>Sim</button>
-</mat-dialog-actions>
-`,
-  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class DialogAnimationsExampleDialog {
-  readonly dialogRef = inject(MatDialogRef<DialogAnimationsExampleDialog>);
-}
+import { ConfirmationDialogServicesService } from '../../shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
 
 @Component({
   selector: 'app-home',
@@ -36,11 +17,10 @@ export class DialogAnimationsExampleDialog {
 })
 export class Home implements OnInit {
 
-
   private transactionService = inject(TransactionService);
   private feedback = inject(FeddbackServiceTsService);
   private router = inject(Router);
-  private dialog = inject(MatDialog);
+  private confirmationDialogServices = inject(ConfirmationDialogServicesService);
 
   transactions = signal<Transaction[]>([]);
 
@@ -53,9 +33,11 @@ export class Home implements OnInit {
   }
 
   remove(transaction: Transaction) {
-    this.dialog.open(DialogAnimationsExampleDialog, {
-    }).afterClosed()
-      .pipe(filter((result: boolean) => result === true))
+    this.confirmationDialogServices
+      .open({
+        title: 'Deletar Transação 💀',
+        message: 'Voce Realmente quer deletar a transacao🚨?',
+      })
       .subscribe(() => {  // Removemos o parâmetro result pois já filtramos com pipe
         this.transactionService.delete(transaction.id).subscribe({
           next: () => {

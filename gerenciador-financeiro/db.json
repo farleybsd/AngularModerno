@@ -1,24 +1,6 @@
 {
   "transactions": [
     {
-      "title": "pix",
-      "type": "income",
-      "value": 100,
-      "id": 6
-    },
-    {
-      "title": "teste denovo",
-      "type": "income",
-      "value": 20,
-      "id": 8
-    },
-    {
-      "title": "Impressao",
-      "type": "income",
-      "value": 0.1,
-      "id": 9
-    },
-    {
       "title": "sss",
       "type": "outcome",
       "value": 0.32,
