@@ -1,12 +1,6 @@
 {
   "transactions": [
     {
-      "title": "sss",
-      "type": "outcome",
-      "value": 0.32,
-      "id": 10
-    },
-    {
       "title": "Teste Dois",
       "type": "income",
       "value": 200,
