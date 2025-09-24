@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, linkedSignal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router } from '@angular/router';
 import { ConfirmationDialogServicesService } from '../../../../shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
@@ -28,11 +28,12 @@ export class ListComponent {
   private router = inject(Router);
   private confirmationDialogServices = inject(ConfirmationDialogServicesService);
 
-  transactions = signal<Transaction[]>([]);
+  transactions = input.required<Transaction[]>();
+  items = linkedSignal(() => this.transactions());
 
-  ngOnInit(): void {
-    this.getTraansactions();
-  }
+  // ngOnInit(): void {
+  //   this.getTraansactions();
+  // }
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id]);
@@ -56,22 +57,22 @@ export class ListComponent {
   }
 
   private removeTransactionFromArray(transaction: Transaction) {
-    this.transactions.update(transactions => {
+    this.items.update(transactions => {
       return transactions.filter(item => item.id !== transaction.id);
     });
   }
 
-  private getTraansactions() {
-    this.transactionService.getAll().subscribe({
-      next: (trans) => {
-        console.log('Received transactions:', trans);
-        this.transactions.set(trans);
-      },
-      error: (error) => {
-        console.error('Error fetching transactions:', error);
-      }
-    });
-  }
+  // private getTraansactions() {
+  //   this.transactionService.getAll().subscribe({
+  //     next: (trans) => {
+  //       console.log('Received transactions:', trans);
+  //       this.items.set(trans);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching transactions:', error);
+  //     }
+  //   });
+  // }
 
 }
 
