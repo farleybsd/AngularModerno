@@ -4,7 +4,21 @@
   <a matButton="filled" routerLink="create">Adicionar</a>
 </div>
 
-<div class="transactions">
+<app-transations-container class="transactions"  [transactions]="transactions()">
+  <ng-template #item let-item="item">
+    <app-transaction-item 
+      class="transactions" 
+      [transaction]="item" 
+      (edit)="edit($event)"
+      (remove)="remove($event)"
+      ></app-transaction-item>
+  </ng-template>
+  <ng-template #noItems>
+    <app-no-transactions />
+  </ng-template>
+</app-transations-container>
+
+<!-- <div class="transactions">
   @for (item of transactions(); track item) {
   <app-transaction-item 
   class="transactions" 
@@ -14,4 +28,4 @@
   } @empty {
   <app-no-transactions />
   }
-</div>
+</div> -->

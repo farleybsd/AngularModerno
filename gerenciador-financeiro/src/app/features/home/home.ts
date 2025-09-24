@@ -8,10 +8,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { FeddbackServiceTsService } from '../../shared/feedback/services/feddback.service.ts.service';
 import { ConfirmationDialogServicesService } from '../../shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
+import { TransationsContainerComponent } from './components/transations-container/transations-container.component';
 
 @Component({
   selector: 'app-home',
-  imports: [Balance, TransactionItem, NoTransactions, MatButtonModule, RouterLink],
+  imports: [Balance,
+            TransactionItem,
+            NoTransactions,
+            MatButtonModule,
+            RouterLink,
+            TransationsContainerComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
