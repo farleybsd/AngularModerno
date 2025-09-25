@@ -82,3 +82,27 @@ proxy.conf.json
           "options": {
             "proxyConfig": "src/proxy.conf.json"
           },
+
+# [bônus] Implementando Path Mapping com Angular
+tsconfig.json
+"paths": {
+      "@shared/*": ["./src/app/shared/*"]
+    },
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve",
+    "paths": {
+      "@shared/*": ["./src/app/shared/*"]
+    },
+  },

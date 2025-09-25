@@ -1,14 +1,14 @@
 import { Component, inject, input, linkedSignal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router } from '@angular/router';
-import { ConfirmationDialogServicesService } from '../../../../shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
-import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
-import { Transaction } from '../../../../shared/transaction/interfaces/transaction';
-import { TransactionService } from '../../../../shared/transaction/services/transaction';
 import { Balance } from './components/balance/balance';
 import { NoTransactions } from './components/no-transactions/no-transactions';
 import { TransactionItem } from './components/transaction-item/transaction-item';
 import { TransationsContainerComponent } from './components/transations-container/transations-container.component';
+import { ConfirmationDialogServicesService } from '@shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
+import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.service.ts.service';
+import { Transaction } from '@shared/transaction/interfaces/transaction';
+import { TransactionService } from '@shared/transaction/services/transaction';
 
 @Component({
   selector: 'app-list',
