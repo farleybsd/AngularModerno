@@ -65,3 +65,20 @@ npm install ngx-mask
 npx ng g s  shared/feedback/services/feddback.service.ts
 # Criando um Resolver 
 npx ng g resolver  features/home/pages/create/resolvers/get-transaction-by-id
+
+# Usando Proxy Evitar Erro de CORS (Serving Angular apps for development)
+1. DENTRO DA PASTA SRC 
+proxy.conf.json
+2. {
+   "/api": {
+     "target": "http://localhost:3000",
+     "secure": false
+   }
+ }
+
+3 Angular.json
+ "serve": {
+          "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
