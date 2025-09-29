@@ -111,3 +111,5 @@ tsconfig.json
   npx ng g c core/auth/pages/login
   # Criando componente de layout para autenticação
   npx ng g c core/auth/components/layout
+  # Criando auth Service
+  npx ng g s  core/auth/service/auth
