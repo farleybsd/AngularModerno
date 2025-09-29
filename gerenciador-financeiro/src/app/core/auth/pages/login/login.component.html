@@ -25,6 +25,11 @@
 <mat-error>Campo Obrigatorio</mat-error>
 }
 </mat-form-field>
+
+@if (form.hasError('wrongCredentials')) {
+<mat-error>Usuario ou senha esta incorreta!</mat-error>
+}
+
 <div class="submit-container">
     <button type="submit" mat-flat-button="filled" [disabled]="form.invalid">Entrar</button>
 </div>
