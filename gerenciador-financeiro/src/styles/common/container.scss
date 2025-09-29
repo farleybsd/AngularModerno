@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+    .container-context{
+        width: 100%;
+        max-width: 720px;
+    }
+}
