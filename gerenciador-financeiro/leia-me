@@ -106,3 +106,6 @@ tsconfig.json
       "@shared/*": ["./src/app/shared/*"]
     },
   },
+
+  # Criando Login 
+  npx ng g c core/auth/pages/login
