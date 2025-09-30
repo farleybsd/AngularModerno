@@ -113,3 +113,13 @@ tsconfig.json
   npx ng g c core/auth/components/layout
   # Criando auth Service
   npx ng g s  core/auth/service/auth
+  
+  # Guarda de Rotas
+  npx ng g guard core/auth/guards/is-authenticated
+
+  Which type of guard would you like to create? (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+❯◯ CanActivate
+ ◯ CanActivateChild
+ ◯ CanDeactivate
+ ◯ CanMatch
+ R:  CanActivate
