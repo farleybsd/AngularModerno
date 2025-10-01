@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { UserCredentials } from '../../interfaces/user-credentials';
 import { AuthTokenStorageService } from '../../service/auth-token-storage.service';
 import { LoggedInUserStoreService } from '../../stores/logged-in-user-store.service';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -42,24 +43,25 @@ export class LoginComponent {
       user: this.form.value.user as string,
       password: this.form.value.password as string
     }
-    this.authService.login(payload).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.authTokenStorageService.set(res.token);
-        this.authService.getCurrentUser(res.token).subscribe((user) => {
-          this.loggedInUserStoreService.set(user);
+    this.authService.login(payload)
+      .pipe(
+        tap((res) => this.authTokenStorageService.set(res.token)),
+        switchMap((res) => this.authService.getCurrentUser(res.token)),
+        tap((user) => this.loggedInUserStoreService.set(user))
+      )
+      .subscribe({
+        next: (res) => {
+          console.log(res);
           this.router.navigate(['']);
-        });
-
-      },
-      error: (err: HttpErrorResponse) => {
-        if (err.status === 401) {
-          this.form.setErrors({
-            wrongCredentials: true
-          });
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.status === 401) {
+            this.form.setErrors({
+              wrongCredentials: true
+            });
+          }
         }
-      }
-    });
+      });
   }
 
 }
