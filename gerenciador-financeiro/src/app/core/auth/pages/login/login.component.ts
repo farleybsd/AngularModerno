@@ -20,7 +20,7 @@ import { AuthTokenStorageService } from '../../service/auth-token-storage.servic
 })
 export class LoginComponent {
 
-  authService = inject(AuthService); 
+  authService = inject(AuthService);
   authTokenStorageService = inject(AuthTokenStorageService);
   router = inject(Router);
 
@@ -35,7 +35,7 @@ export class LoginComponent {
       return;
     }
 
-    const payload : UserCredentials = {
+    const payload: UserCredentials = {
       user: this.form.value.user as string,
       password: this.form.value.password as string
     }
@@ -43,7 +43,10 @@ export class LoginComponent {
       next: (res) => {
         console.log(res);
         this.authTokenStorageService.set(res.token);
-        this.router.navigate(['']);
+        this.authService.getCurrentUser(res.token).subscribe(() => {
+          this.router.navigate(['']);
+        });
+
       },
       error: (err: HttpErrorResponse) => {
         if (err.status === 401) {

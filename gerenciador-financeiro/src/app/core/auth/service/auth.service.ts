@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { UserCredentials } from '../interfaces/user-credentials';
 import { AuthTokenResponse } from '../interfaces/auth-token-response';
+import { User } from '../interfaces/user';
 
 
 @Injectable({
@@ -16,6 +17,12 @@ export class AuthService {
       return of({ token: 'fake-token' });
     }
     return throwError(() => new HttpResponse({ status: 401, statusText: 'Unauthorize' }));
+  }
+
+  getCurrentUser(token: string): Observable<User> {
+    return of({
+      userName: 'Admin',
+    });
   }
 
 }
