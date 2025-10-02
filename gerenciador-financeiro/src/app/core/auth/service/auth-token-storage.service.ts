@@ -6,12 +6,20 @@ import { LocalStorageToken } from '../tokens/local-storage';
 })
 export class AuthTokenStorageService {
 
-  private readonly Key : string = 'auth-token';
+  private readonly Key: string = 'auth-token';
 
   localStorageToken = inject(LocalStorageToken);
 
-  set(token:string){
+  set(token: string) {
     this.localStorageToken.setItem(this.Key, token);
   }
-  
+
+  has(): boolean {
+    return Boolean(this.get());
+  }
+
+  get(): string | null {
+    return this.localStorageToken.getItem(this.Key);
+  }
+
 }

@@ -123,3 +123,6 @@ tsconfig.json
  ◯ CanDeactivate
  ◯ CanMatch
  R:  CanActivate
+
+ # Criando um interceptor
+ npx ng g interceptor core/auth/interceptors/set-auth-token
