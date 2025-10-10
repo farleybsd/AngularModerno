@@ -39,4 +39,8 @@ export class AuthService {
      return of({ token: generateToken() });
   }
 
+  logout() {
+    return of({});
+  }
+
 }

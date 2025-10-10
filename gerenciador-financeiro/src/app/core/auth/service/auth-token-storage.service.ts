@@ -22,4 +22,7 @@ export class AuthTokenStorageService {
     return this.localStorageToken.getItem(this.Key);
   }
 
+  remove(): void {
+    return this.localStorageToken.removeItem(this.Key);
+  }
 }
