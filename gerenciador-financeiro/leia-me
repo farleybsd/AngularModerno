@@ -126,3 +126,6 @@ tsconfig.json
 
  # Criando um interceptor
  npx ng g interceptor core/auth/interceptors/set-auth-token
+
+ # Implementando Facade Pattern no fluxo de login
+npx ng g s core/auth/facades/login-facade

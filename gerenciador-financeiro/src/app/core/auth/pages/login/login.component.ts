@@ -4,13 +4,10 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from "@angular/material/input";
-import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserCredentials } from '../../interfaces/user-credentials';
-import { AuthTokenStorageService } from '../../service/auth-token-storage.service';
-import { LoggedInUserStoreService } from '../../stores/logged-in-user-store.service';
-import { switchMap, tap } from 'rxjs';
+import { LoginFacadeService } from '../../facades/login-facade.service';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +19,7 @@ import { switchMap, tap } from 'rxjs';
 })
 export class LoginComponent {
 
-  authService = inject(AuthService);
-  authTokenStorageService = inject(AuthTokenStorageService);
-  loggedInUserStoreService = inject(LoggedInUserStoreService);
+  private readonly loginFacadeService = inject(LoginFacadeService);
 
   router = inject(Router);
 
@@ -43,12 +38,7 @@ export class LoginComponent {
       user: this.form.value.user as string,
       password: this.form.value.password as string
     }
-    this.authService.login(payload)
-      .pipe(
-        tap((res) => this.authTokenStorageService.set(res.token)),
-        switchMap((res) => this.authService.getCurrentUser(res.token)),
-        tap((user) => this.loggedInUserStoreService.set(user))
-      )
+    this.loginFacadeService.login(payload)
       .subscribe({
         next: (res) => {
           console.log(res);
