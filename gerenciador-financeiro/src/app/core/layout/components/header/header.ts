@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { LogoutFacadeService } from '../../../auth/facades/logout-facade.service';
 import { Router } from '@angular/router';
+import { LoggedInUserStoreService } from '../../../auth/stores/logged-in-user-store.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class Header {
 
   private readonly logoutFacadeService = inject(LogoutFacadeService);
   private readonly router = inject(Router);
+  private readonly loggedInUserStoreService = inject(LoggedInUserStoreService);
 
   logout() {
     this.logoutFacadeService.logout().subscribe({
@@ -21,4 +23,7 @@ export class Header {
       error: (error) => console.error('Logout error', error)
     });
   }
+
+  isLoggedIn = computed(() => this.loggedInUserStoreService.isLoggedIn())
+  
 }

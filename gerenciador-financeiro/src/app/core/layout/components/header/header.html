@@ -5,7 +5,7 @@
 
             <span>Gerenciador Financeiro</span>
 
-            @if(true){
+            @if(isLoggedIn()) {
             <button matButton="filled" mat-button class="toolbar-logout" (click)="logout()">Sair</button>
             }
 
