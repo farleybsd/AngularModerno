@@ -129,3 +129,6 @@ tsconfig.json
 
  # Implementando Facade Pattern no fluxo de login
 npx ng g s core/auth/facades/login-facade
+
+# Criando diretiva para abstrair classes CSS
+npx ng g d shared/material/buttons/directives/custom-color
