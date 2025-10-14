@@ -9,7 +9,7 @@
     }
   </div>
 
-  <mat-form-field class="w-100 mb-24">
+  <mat-form-field class="mb-24" appFullWidth>
     <mat-label>Titulo</mat-label>
     <input matInput placeholder="Digite o titulo da transação" [formControlName]="'title'" required />
     @if (form().controls.title.hasError('required') && form().controls.title.touched) {
@@ -17,7 +17,7 @@
     }
   </mat-form-field>
 
-  <mat-form-field class="w-100 mb-24">
+  <mat-form-field class="mb-24" appFullWidth>
     <mat-label>Valor</mat-label>
     <input
      matInput 

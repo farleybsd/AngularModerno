@@ -12,13 +12,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
 import { Observable, tap } from 'rxjs';
+import { FullWidthDirective } from '@shared/material/form-field/directives/full-width.directive';
 
 
 @Component({
   selector: 'app-create',
   imports: [MatFormFieldModule, MatInputModule, FormsModule,
     ReactiveFormsModule, MatButton, MatButtonModule,
-    MatButtonToggleModule, NgxMaskDirective],
+    MatButtonToggleModule, NgxMaskDirective,FullWidthDirective],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
