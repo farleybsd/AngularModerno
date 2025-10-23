@@ -8,20 +8,25 @@ import { TransactionType } from '../../../../shared/transaction/enums/transactio
 import { NgxMaskDirective } from 'ngx-mask';
 import { TransactionService } from '../../../../shared/transaction/services/transaction';
 import { Transaction, TransactionPayload } from '../../../../shared/transaction/interfaces/transaction';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeddbackServiceTsService } from '../../../../shared/feedback/services/feddback.service.ts.service';
 import { Observable, tap } from 'rxjs';
-import { FullWidthDirective } from '@shared/material/form-field/directives/full-width.directive';
-import { MarginBottomDirective } from '@shared/material/form-field/directives/margin-bottom.directive';
+import { CustomFormFieldDirective } from '@shared/material/form-field/directives/custom-form-field.directive';
 
 
 @Component({
   selector: 'app-create',
-  imports: [MatFormFieldModule, MatInputModule, FormsModule,
-    ReactiveFormsModule, MatButton, MatButtonModule,
-    MatButtonToggleModule, NgxMaskDirective,FullWidthDirective,
-    MarginBottomDirective],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButton,
+    MatButtonModule,
+    MatButtonToggleModule,
+    NgxMaskDirective,
+    CustomFormFieldDirective],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'
 })
