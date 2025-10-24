@@ -1,11 +1,11 @@
 <mat-card class="card">
     <div>
         <ng-container *isIncome="transaction().type; else elseTemplate">
-            E Ganho
+            <mat-chip>Ganho</mat-chip>
         </ng-container>
 
-          <ng-template #elseTemplate>
-            E Gasto
+        <ng-template #elseTemplate>
+            <mat-chip>Gasto</mat-chip>
         </ng-template>
 
         <div class="card-title">
