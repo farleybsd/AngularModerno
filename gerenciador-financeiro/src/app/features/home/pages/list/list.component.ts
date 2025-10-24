@@ -9,6 +9,7 @@ import { ConfirmationDialogServicesService } from '@shared/dialog/confirmation/s
 import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.service.ts.service';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
+import { CustomKeyvaluePipe } from './pipes/custom-keyvalue-pipe';
 
 @Component({
   selector: 'app-list',
@@ -17,7 +18,8 @@ import { TransactionService } from '@shared/transaction/services/transaction';
             NoTransactions,
             MatButtonModule,
             RouterLink,
-            TransationsContainerComponent],
+            TransationsContainerComponent,
+            CustomKeyvaluePipe],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
