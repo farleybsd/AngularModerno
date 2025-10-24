@@ -1,8 +1,12 @@
 <mat-card class="card">
     <div>
-        <ng-container *isIncome="transaction().type">
+        <ng-container *isIncome="transaction().type; else elseTemplate">
             E Ganho
         </ng-container>
+
+          <ng-template #elseTemplate>
+            E Gasto
+        </ng-template>
 
         <div class="card-title">
             {{ transaction().title }}

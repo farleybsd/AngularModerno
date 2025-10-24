@@ -13,14 +13,25 @@ export class IsIncomeDirective {
     alias: 'isIncome',
   })
 
+  elseTemplate = input<TemplateRef<any>>(undefined, {
+    alias: 'isIncomeElse',
+  })
+
   constructor() {
     effect(() => {
-      if(this.transactionType() === TransactionType.INCOME) {
+
+      if (this.transactionType() === TransactionType.INCOME) {
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {
-        this.viewContainer.clear();
+        if (this.elseTemplate()) {
+          this.viewContainer.createEmbeddedView(this.elseTemplate()!);
+        } else {
+          this.viewContainer.clear();
+        }
+        
       }
-    }); 
+    });
+
   }
 
 }
