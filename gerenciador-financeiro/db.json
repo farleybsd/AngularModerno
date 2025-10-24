@@ -5,6 +5,12 @@
       "type": "outcome",
       "value": 50000,
       "id": 1
+    },
+    {
+      "title": "Salario",
+      "type": "income",
+      "value": 7000,
+      "id": 2
     }
   ]
 }
