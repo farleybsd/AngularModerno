@@ -1,15 +1,24 @@
 <app-header></app-header>
 
 <mat-sidenav-container class="sidenav-container">
-<mat-sidenav opened="" mode="side" class="sidenav">
-    <p>Side Navigation Content</p>
+    <mat-sidenav opened="" mode="side" class="sidenav">
+        <mat-nav-list>
+            @for ( link of links(); track link) { 
+            <a 
+                mat-list-item
+                [routerLink]="link.url"
+                routerLinkActive="mdc-list-item--activated"
+                [routerLinkActiveOptions]="{exact: true}">
+                {{link.label}}
+            </a>
+            }
+        </mat-nav-list>
 </mat-sidenav>
 <mat-sidenav-content>
-    <div class="container">
-        <div class="container-context">
-            <router-outlet></router-outlet>
+        <div class="container">
+            <div class="container-context">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-    </div>
 </mat-sidenav-content>
-
-<mat-sidenav-content>
+<mat-sidenav-container>
