@@ -11,19 +11,4 @@ import { LoggedInUserStoreService } from '../../../auth/stores/logged-in-user-st
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
-export class Header {
-
-  private readonly logoutFacadeService = inject(LogoutFacadeService);
-  private readonly router = inject(Router);
-  private readonly loggedInUserStoreService = inject(LoggedInUserStoreService);
-
-  logout() {
-    this.logoutFacadeService.logout().subscribe({
-      next: () => {this.router.navigate(['/auth/login'])},
-      error: (error) => console.error('Logout error', error)
-    });
-  }
-
-  isLoggedIn = computed(() => this.loggedInUserStoreService.isLoggedIn())
-  
-}
+export class Header {}
