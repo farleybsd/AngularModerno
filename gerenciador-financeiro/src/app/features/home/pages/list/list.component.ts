@@ -1,4 +1,4 @@
-import { Component, inject, input, linkedSignal, signal } from '@angular/core';
+import { Component, inject, input, linkedSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router } from '@angular/router';
 import { Balance } from './components/balance/balance';
@@ -9,17 +9,15 @@ import { ConfirmationDialogServicesService } from '@shared/dialog/confirmation/s
 import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.service.ts.service';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
-import { CustomKeyvaluePipe } from './pipes/custom-keyvalue-pipe';
 
 @Component({
   selector: 'app-list',
   imports: [Balance,
-            TransactionItem,
-            NoTransactions,
-            MatButtonModule,
-            RouterLink,
-            TransationsContainerComponent,
-            CustomKeyvaluePipe],
+    TransactionItem,
+    NoTransactions,
+    MatButtonModule,
+    RouterLink,
+    TransationsContainerComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
