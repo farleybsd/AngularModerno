@@ -1,0 +1,15 @@
+import { computed, Injectable, signal } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SidenavVisibilityStore {
+  
+  private state = signal(false);
+
+  isVisible = computed(() => this.state());
+
+  toogle(){
+    this.state.update( state => !state);
+  }
+}
