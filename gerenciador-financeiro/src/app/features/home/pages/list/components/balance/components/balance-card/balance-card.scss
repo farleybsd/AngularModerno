@@ -1,6 +1,17 @@
-.income{
-    color: var(custom-color-success);
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.outcome{
+
+.income {
+    color: var(--custom-color-success);
+}
+
+.outcome {
     color: var(--mat-sys-error);
+}
+
+.zero {
+    color: var(--mat-sys-secondary)
 }

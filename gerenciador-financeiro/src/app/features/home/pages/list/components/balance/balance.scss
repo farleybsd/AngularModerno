@@ -1,13 +1,16 @@
+@use 'mixins/media-query' as mq;
+
 :host {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-    .card {
-        flex: 1;
+  @include mq.media-query(sm) {
+    flex-direction: row;
+  }
 
-    }
-}
+  .card {
+    flex: 1;
 
-.zero{
-  color: var(--mat-sys-secondary)
+  }
 }
