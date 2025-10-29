@@ -1,13 +1,8 @@
 <header>
     <mat-toolbar class="toolbar">
-        @if(isMobile()){
-        <button matIconButton (click)="toogleVisibility()">
-            <mat-icon class="menu-icon">menu</mat-icon>
-        </button>
-        }
-
-        <div class="toolbar-content">
-            <span>Gerenciador Financeiro</span>
-        </div>
+        <app-toogle-sidenav-visibility/>
+    <div class="toolbar-content">
+        <span>Gerenciador Financeiro</span>
+    </div>
     </mat-toolbar>
-</header>
+</header> 

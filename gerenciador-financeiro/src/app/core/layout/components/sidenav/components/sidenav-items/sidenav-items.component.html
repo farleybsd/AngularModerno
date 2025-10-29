@@ -4,7 +4,8 @@
             mat-list-item
             [routerLink]="link.url"
             routerLinkActive="mdc-list-item--activated"
-            [routerLinkActiveOptions]="{exact: true}">
+            [routerLinkActiveOptions]="{exact: true}"
+            (click)="closeSideNav()">
             {{link.label}}
         </a>
     }
