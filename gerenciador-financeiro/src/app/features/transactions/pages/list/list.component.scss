@@ -1,0 +1,20 @@
+@use 'mixins/media-query' as mq;
+
+.transactions {
+    margin: 20px 0;
+}
+
+.transactions {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+
+    @include mq.media-query(sm) {
+        justify-content: flex-end;
+    }
+}

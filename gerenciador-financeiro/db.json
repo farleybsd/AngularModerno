@@ -7,10 +7,28 @@
       "id": 1
     },
     {
-      "title": "Salario",
+      "title": "Salario Mes Onzeei",
       "type": "income",
       "value": 7000,
       "id": 2
+    },
+    {
+      "title": "Mudanca",
+      "type": "outcome",
+      "value": 3000,
+      "id": 3
+    },
+    {
+      "title": "a",
+      "type": "income",
+      "value": 0.1,
+      "id": 4
+    },
+    {
+      "title": "w",
+      "type": "outcome",
+      "value": 0.5,
+      "id": 5
     }
   ]
 }
