@@ -1,5 +1,6 @@
 <div class="actions">
-  <a matButton="filled" routerLink="create">Adicionar</a>
+  <app-search class="search"></app-search>
+  <a class="add-transaction" matButton="filled" routerLink="create">Adicionar</a>
 </div>
 
 <app-transations-container class="transactions"  [transactions]="items()">
