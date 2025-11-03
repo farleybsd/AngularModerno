@@ -1,4 +1,4 @@
-import { Component, inject, input, linkedSignal } from '@angular/core';
+import { Component, inject, input, linkedSignal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
@@ -32,6 +32,8 @@ export class ListComponent {
 
   transactions = input.required<Transaction[]>();
   items = linkedSignal(() => this.transactions());
+
+  searchTerm = signal('')
 
   // ngOnInit(): void {
   //   this.getTraansactions();

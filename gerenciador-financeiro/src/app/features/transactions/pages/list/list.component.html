@@ -1,7 +1,9 @@
 <div class="actions">
-  <app-search class="search"></app-search>
+  <app-search class="search" [(searchTerm)]="searchTerm"></app-search>
   <a class="add-transaction" matButton="filled" routerLink="create">Adicionar</a>
 </div>
+
+<!-- {{searchTerm()}} -->
 
 <app-transations-container class="transactions"  [transactions]="items()">
   <ng-template #item let-item="item">
