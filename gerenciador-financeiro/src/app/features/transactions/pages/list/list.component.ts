@@ -1,4 +1,4 @@
-import { Component, inject, input, linkedSignal, resource, signal } from '@angular/core';
+import { Component, inject, Signal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
@@ -9,9 +9,16 @@ import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.ser
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
 import { SearchComponent } from './components/search/search.component';
-import { firstValueFrom } from 'rxjs';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { HttpParams, httpResource, HttpResourceRequest } from '@angular/common/http';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { debounceTime } from 'rxjs';
+
+
+function typeDelay(signal: Signal<string>) {
+  const observable = toObservable(signal, {}).pipe(
+    debounceTime(500)
+  )
+  return toSignal(observable, { initialValue: '' })
+}
 
 @Component({
   selector: 'app-list',
@@ -68,7 +75,7 @@ export class ListComponent {
   //   this.getTraansactions();
   // }
 
-  resourceRef = this.transactionService.getAllWitchHttpResource(this.searchTerm);
+  resourceRef = this.transactionService.getAllWitchHttpResource(typeDelay(this.searchTerm));
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id], { relativeTo: this.activatedRoute });
