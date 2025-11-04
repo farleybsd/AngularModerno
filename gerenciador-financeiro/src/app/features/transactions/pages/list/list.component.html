@@ -4,21 +4,22 @@
 </div>
 
 <!-- {{searchTerm()}} -->
-
-<app-transations-container class="transactions"  [transactions]="resourceRef.value()">
+@if(isLoading()){
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}@else {
+<app-transations-container class="transactions" [transactions]="transactions()">
   <ng-template #item let-item="item">
-    <app-transaction-item 
-      class="transactions" 
-      [transaction]="item" 
-      (edit)="edit($event)"
-      (remove)="remove($event)"
-      ></app-transaction-item>
+    <app-transaction-item class="transactions" [transaction]="item" (edit)="edit($event)"
+      (remove)="remove($event)"></app-transaction-item>
   </ng-template>
   <ng-template #noItems>
     <app-no-transactions />
   </ng-template>
 </app-transations-container>
- 
+}
+
+
+
 <!-- <div class="transactions">
   @for (item of transactions(); track item) {
   <app-transaction-item 

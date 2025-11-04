@@ -1,4 +1,4 @@
-import { Component, inject, Signal, signal } from '@angular/core';
+import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
@@ -11,6 +11,7 @@ import { TransactionService } from '@shared/transaction/services/transaction';
 import { SearchComponent } from './components/search/search.component';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 function typeDelay(signal: Signal<string>) {
@@ -28,7 +29,8 @@ function typeDelay(signal: Signal<string>) {
     MatButtonModule,
     RouterLink,
     TransationsContainerComponent,
-    SearchComponent],
+    SearchComponent,
+    MatProgressBarModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -44,7 +46,6 @@ export class ListComponent {
   // items = linkedSignal(() => this.transactions());
 
   searchTerm = signal('')
-
   // Sem Rxjs
   // resourceRef = resource({
   //   params: () => {
@@ -75,7 +76,10 @@ export class ListComponent {
   //   this.getTraansactions();
   // }
 
-  resourceRef = this.transactionService.getAllWitchHttpResource(typeDelay(this.searchTerm));
+  private resourceRef = this.transactionService.getAllWitchHttpResource(typeDelay(this.searchTerm));
+
+  isLoading = computed(() => this.resourceRef.isLoading()); 
+  transactions = computed(() => this.resourceRef.value()); 
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id], { relativeTo: this.activatedRoute });
