@@ -9,7 +9,7 @@ export default [
         path: '',
         component: ListComponent,
         resolve: {
-            transactions: getTransactionsResolver
+            //transactions: getTransactionsResolver
         }   
     },
     {

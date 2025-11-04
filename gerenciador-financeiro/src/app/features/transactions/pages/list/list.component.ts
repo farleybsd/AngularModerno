@@ -10,6 +10,8 @@ import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
 import { SearchComponent } from './components/search/search.component';
 import { firstValueFrom } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { HttpParams, httpResource, HttpResourceRequest } from '@angular/common/http';
 
 @Component({
   selector: 'app-list',
@@ -36,21 +38,37 @@ export class ListComponent {
 
   searchTerm = signal('')
 
-  resourceRef = resource({
-    params: () => {
-      return {
-        searchTerm: this.searchTerm()
-      }
-    },
-    loader:({params: {searchTerm}}) => {
-     return  firstValueFrom(this.transactionService.getAll(searchTerm))
-    },
-    defaultValue: []
-  })
+  // Sem Rxjs
+  // resourceRef = resource({
+  //   params: () => {
+  //     return {
+  //       searchTerm: this.searchTerm()
+  //     }
+  //   },
+  //   loader:({params: {searchTerm}}) => {
+  //    return  firstValueFrom(this.transactionService.getAll(searchTerm))
+  //   },
+  //   defaultValue: []
+  // })
+
+  // Rxjs ele cancela requisições antigas
+  //   resourceRef = rxResource({
+  //   params: () => {
+  //     return {
+  //       searchTerm: this.searchTerm()
+  //     }
+  //   },
+  //   stream:({params: {searchTerm}}) => {
+  //    return  this.transactionService.getAll(searchTerm)
+  //   },
+  //   defaultValue: []
+  // })
 
   // ngOnInit(): void {
   //   this.getTraansactions();
   // }
+
+  resourceRef = this.transactionService.getAllWitchHttpResource(this.searchTerm);
 
   edit(transaction: Transaction) {
     this.router.navigate(['edit', transaction.id], { relativeTo: this.activatedRoute });
