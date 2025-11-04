@@ -1,4 +1,4 @@
-import { Component, inject, input, linkedSignal, signal } from '@angular/core';
+import { Component, inject, input, linkedSignal, resource, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NoTransactions } from './components/no-transactions/no-transactions';
@@ -9,6 +9,7 @@ import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.ser
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
 import { SearchComponent } from './components/search/search.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -30,10 +31,22 @@ export class ListComponent {
   private confirmationDialogServices = inject(ConfirmationDialogServicesService);
   private activatedRoute = inject(ActivatedRoute);
 
-  transactions = input.required<Transaction[]>();
-  items = linkedSignal(() => this.transactions());
+  // transactions = input.required<Transaction[]>();
+  // items = linkedSignal(() => this.transactions());
 
   searchTerm = signal('')
+
+  resourceRef = resource({
+    params: () => {
+      return {
+        searchTerm: this.searchTerm()
+      }
+    },
+    loader:({params: {searchTerm}}) => {
+     return  firstValueFrom(this.transactionService.getAll(searchTerm))
+    },
+    defaultValue: []
+  })
 
   // ngOnInit(): void {
   //   this.getTraansactions();
@@ -61,7 +74,7 @@ export class ListComponent {
   }
 
   private removeTransactionFromArray(transaction: Transaction) {
-    this.items.update(transactions => {
+    this.resourceRef.update(transactions => {
       return transactions.filter(item => item.id !== transaction.id);
     });
   }
