@@ -7,6 +7,7 @@ import { TransactionService } from '@shared/transaction/services/transaction';
 import { Balance } from './components/balance/balance';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PieChartConfig } from './components/pie-chart/pie-chart-config.interface';
+import { TransactionType } from '@shared/transaction/enums/transaction-type';
 
 @Component({
   selector: 'app-list',
@@ -24,8 +25,24 @@ export class HomeComponent {
 
   transactions = input.required<Transaction[]>();
 
+  totalIncome = computed(() => {
+    return this.transactions()
+      .filter(item => item.type === TransactionType.INCOME)
+      .reduce((total, item) => total + item.value, 0);
+  });
+
+  totalOutcome = computed(() => {
+    return this.transactions()
+      .filter(item => item.type === TransactionType.OUTCOME)
+      .reduce((total, item) => total + item.value, 0);
+  });
+
+
   chartConfig = computed<PieChartConfig>(() => {
-    return { labels: ['teste'], dataLabel: 'teste', data: [100] }
+    return { 
+      labels: ['Ganhos', 'Gastos'],
+      dataLabel: 'Valor Total',
+      data: [this.totalIncome(),this.totalOutcome()] }
   })
 
   //items = linkedSignal(() => this.transactions());
