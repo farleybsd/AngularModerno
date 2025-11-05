@@ -1,13 +1,11 @@
-import { Component, computed, inject, input, linkedSignal } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfirmationDialogServicesService } from '@shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
-import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.service.ts.service';
+import { Component, computed, input } from '@angular/core';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
-import { TransactionService } from '@shared/transaction/services/transaction';
 import { Balance } from './components/balance/balance';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PieChartConfig } from './components/pie-chart/pie-chart-config.interface';
 import { TransactionType } from '@shared/transaction/enums/transaction-type';
+import { sumTransactions } from '@shared/transaction/functions/sum-transactions';
+
 
 @Component({
   selector: 'app-list',
@@ -26,15 +24,11 @@ export class HomeComponent {
   transactions = input.required<Transaction[]>();
 
   totalIncome = computed(() => {
-    return this.transactions()
-      .filter(item => item.type === TransactionType.INCOME)
-      .reduce((total, item) => total + item.value, 0);
+    return sumTransactions(this.transactions(), TransactionType.INCOME);
   });
 
   totalOutcome = computed(() => {
-    return this.transactions()
-      .filter(item => item.type === TransactionType.OUTCOME)
-      .reduce((total, item) => total + item.value, 0);
+    return sumTransactions(this.transactions(), TransactionType.OUTCOME);
   });
 
 

@@ -1,6 +1,8 @@
 import { Component, computed, input } from '@angular/core';
 import { BalanceCard } from './components/balance-card/balance-card';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
+import { sumTransactions } from '@shared/transaction/functions/sum-transactions';
+import { TransactionType } from '@shared/transaction/enums/transaction-type';
 
 @Component({
   selector: 'app-balance',
@@ -13,15 +15,11 @@ export class Balance {
   transactions = input.required<Transaction[]>();
 
   totalIncome = computed(() => {
-    return this.transactions()
-         .filter(item => item.type === 'income')
-         .reduce((total, item) => total + item.value, 0);
+    return sumTransactions(this.transactions(), TransactionType.INCOME);
   });
 
    totalOutcome = computed(() => {
-    return this.transactions()
-         .filter(item => item.type === 'outcome')
-         .reduce((total, item) => total + item.value, 0);
+    return sumTransactions(this.transactions(), TransactionType.OUTCOME);;
   });
 
   balance = computed(() =>{
