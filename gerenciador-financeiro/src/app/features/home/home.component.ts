@@ -5,10 +5,11 @@ import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.ser
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
 import { Balance } from './components/balance/balance';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 
 @Component({
   selector: 'app-list',
-  imports: [Balance,
+  imports: [Balance,PieChartComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
