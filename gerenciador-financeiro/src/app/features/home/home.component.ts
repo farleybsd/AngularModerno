@@ -1,4 +1,4 @@
-import { Component, inject, input, linkedSignal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationDialogServicesService } from '@shared/dialog/confirmation/services/confirmation-dialog.services.ts.service';
 import { FeddbackServiceTsService } from '@shared/feedback/services/feddback.service.ts.service';
@@ -6,10 +6,11 @@ import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { TransactionService } from '@shared/transaction/services/transaction';
 import { Balance } from './components/balance/balance';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { PieChartConfig } from './components/pie-chart/pie-chart-config.interface';
 
 @Component({
   selector: 'app-list',
-  imports: [Balance,PieChartComponent
+  imports: [Balance, PieChartComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -22,7 +23,11 @@ export class HomeComponent {
   // private confirmationDialogServices = inject(ConfirmationDialogServicesService);
 
   transactions = input.required<Transaction[]>();
-  
+
+  chartConfig = computed<PieChartConfig>(() => {
+    return { labels: ['teste'], dataLabel: 'teste', data: [100] }
+  })
+
   //items = linkedSignal(() => this.transactions());
 
   // ngOnInit(): void {
