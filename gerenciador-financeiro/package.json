@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start:app": "ng serve",
+    "start:app": "ng serve --no-hmr",
     "start": "run-p start:wsl start:server",
     "start:wsl": "ng serve --host 0.0.0.0 --poll 2000",
     "build": "ng build",

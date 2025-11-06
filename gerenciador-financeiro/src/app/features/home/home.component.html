@@ -1,5 +1,13 @@
 <app-balance [transactions]="transactions()" />
+
+@defer () {
 <app-pie-chart [config]="chartConfig()"></app-pie-chart>
+} @placeholder(minimum 1s) {
+  <p>Aqui e um placeHolder</p>
+}
+
+
+
 <!-- <div class="actions">
   <a matButton="filled" routerLink="create">Adicionar</a>
 </div>
