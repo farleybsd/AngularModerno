@@ -1,27 +1,34 @@
 <app-balance [transactions]="transactions()" />
 
-<!-- @defer (on interaction(btn)) { -->
- @defer ( when canLoadComponente(); on interaction(interactiveClick) ) {
-<app-pie-chart [config]="chartConfig()"></app-pie-chart>
-} @loading (minimum 2s) {
-<p>Carregando gráfico...</p>
-}
-@placeholder(minimum 1s) {
-<div>
-  <button>Clique Invalido</button>
-</div>
-<div>
-  <!-- <button #btn>Clique Valido</button> -->
-    <button #interactiveClick >Clique Usando Interactive</button>
-</div>
-<div>
-  <!-- <button #btn>Clique Valido</button> -->
-    <button (click)="canLoadComponente.set(true)">Clique usando When</button>
-</div>
-} @error {
-  <p>Erro ao carregar o componenette!</p>
-}
+<div class="chart-container">
+  <!-- @defer (on interaction(btn)) { -->
+  @defer ( when canLoadComponente(); on interaction(interactiveClick) ) {
+  <mat-card class="card">
+    <app-pie-chart [config]="chartConfig()"></app-pie-chart>
+  </mat-card>
 
+  } @loading (minimum 2s) {
+  <mat-card class="card">
+    <mat-progress-bar mode="indeterminate">Carregando gráfico...</mat-progress-bar>
+    <p></p>
+  </mat-card>
+
+  }
+  @placeholder(minimum 1s) {
+  <mat-card class="card">
+    <button matButton="filled">Clique Invalido</button>
+    <button matButton="filled" #interactiveClick>Clique Usando Interactive</button>
+    <button matButton="filled" (click)="canLoadComponente.set(true)">Clique usando
+      When</button>
+  </mat-card>
+  } @error {
+  <mat-card class="card">
+    <mat-icon>error</mat-icon>
+    O Componente nao foi carregado corretamente verifique a sua conecao com a internet e recarregue essa pagina!
+  </mat-card>
+
+  }
+</div>
 
 
 <!-- <div class="actions">
