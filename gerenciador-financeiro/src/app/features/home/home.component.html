@@ -1,6 +1,7 @@
 <app-balance [transactions]="transactions()" />
 
-@defer (on interaction(btn)) {
+<!-- @defer (on interaction(btn)) { -->
+ @defer ( when canLoadComponente()) {
 <app-pie-chart [config]="chartConfig()"></app-pie-chart>
 } @loading (minimum 2s) {
 <p>Carregando gráfico...</p>
@@ -11,7 +12,8 @@
 </div>
 
 <div>
-  <button #btn>Clique Valido</button>
+  <!-- <button #btn>Clique Valido</button> -->
+    <button (click)="canLoadComponente.set(true)">Clique Valido</button>
 </div>
 }
 

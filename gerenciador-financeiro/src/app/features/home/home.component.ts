@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { Transaction } from '@shared/transaction/interfaces/transaction';
 import { Balance } from './components/balance/balance';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
@@ -22,6 +22,7 @@ export class HomeComponent {
   // private confirmationDialogServices = inject(ConfirmationDialogServicesService);
 
   transactions = input.required<Transaction[]>();
+  canLoadComponente = signal(false);
 
   totalIncome = computed(() => {
     return sumTransactions(this.transactions(), TransactionType.INCOME);
