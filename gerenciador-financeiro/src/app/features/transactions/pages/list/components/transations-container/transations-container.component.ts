@@ -1,4 +1,4 @@
-import { Component, contentChild, input, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, input, TemplateRef } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { Transaction } from '../../../../../../shared/transaction/interfaces/transaction';
 
@@ -6,7 +6,8 @@ import { Transaction } from '../../../../../../shared/transaction/interfaces/tra
   selector: 'app-transations-container',
   imports: [NgTemplateOutlet],
   templateUrl: './transations-container.component.html',
-  styleUrl: './transations-container.component.scss'
+  styleUrl: './transations-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TransationsContainerComponent {
 

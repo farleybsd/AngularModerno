@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -28,7 +28,8 @@ import { CustomFormFieldDirective } from '@shared/material/form-field/directives
     NgxMaskDirective,
     CustomFormFieldDirective],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.scss'
+  styleUrl: './create.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateComponent {
 
